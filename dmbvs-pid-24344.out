@@ -1,0 +1,31 @@
+***********************************************************
+********************* Starting dmbvs **********************
+***********************************************************
+*************************** MCMC **************************
+Total iterations = 11001, Thinning = 10, Burnin = 1001
+External seed = 733529, GSL seed = 3908781315, Generator type: mt19937
+Text output deposited in directory:
+ /mnt/phd_repositories/meg-bayesian-regression/results//output-pid-24344
+***********************************************************
+*************************** Data **************************
+# of categories = 805, # of observations = 60, # of covariates = 26
+***********************************************************
+********************* Hyperparameters *********************
+Slab variance = 10.0, Intercept variance = 10.0
+Beta-Bernoulli alpha = 0.02, Beta-Bernoulli beta = 1.98
+***********************************************************
+***********************************************************
+Starting the sampler
+Starting the 0th iteration out of 11001 at Fri May 25 17:35:19 2018
+Starting the 1000th iteration out of 11001 at Fri May 25 17:35:38 2018
+Starting the 2000th iteration out of 11001 at Fri May 25 17:35:57 2018
+Starting the 3000th iteration out of 11001 at Fri May 25 17:36:17 2018
+Starting the 4000th iteration out of 11001 at Fri May 25 17:36:36 2018
+Starting the 5000th iteration out of 11001 at Fri May 25 17:36:56 2018
+Starting the 6000th iteration out of 11001 at Fri May 25 17:37:15 2018
+Starting the 7000th iteration out of 11001 at Fri May 25 17:37:34 2018
+Starting the 8000th iteration out of 11001 at Fri May 25 17:37:54 2018
+Starting the 9000th iteration out of 11001 at Fri May 25 17:38:13 2018
+Starting the 10000th iteration out of 11001 at Fri May 25 17:38:33 2018
+Starting the 11000th iteration out of 11001 at Fri May 25 17:38:52 2018
+Sampling finished!

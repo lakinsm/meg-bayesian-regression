@@ -1,0 +1,121 @@
+"covariates","taxa","mppi","beta"
+"Class A betalactamases","Pedobacter",0.665,0.1646561521
+"Class A betalactamases","Ketogulonicigenium",0.885,0.3778492221
+"Class A betalactamases","T4likevirus",0.924,-0.2788243114
+"Multi-drug efflux pumps","Haloarcula",0.91,0.24683048022
+"Multi-drug efflux pumps","Exiguobacterium",0.753,0.1975625065
+"Multi-drug efflux pumps","Brevundimonas",0.898,-0.5790477534
+"Multi-drug efflux pumps","Bordetella",0.506,-0.2171723621
+"Multi-drug efflux pumps","Desulfomicrobium",0.892,0.2520956267
+"23S rRNA methyltransferases","Chroococcidiopsis",1,0.5472573061
+"23S rRNA methyltransferases","Brachyspira",0.552,0.06522270406
+"23S rRNA methyltransferases","Phikmvlikevirus",1,-0.5925641917
+"Macrolide phosphotransferases","Robiginitalea",0.635,0.2915966449
+"Macrolide phosphotransferases","Taylorella",0.683,-0.3847434144
+"Macrolide phosphotransferases","Pasteurella",0.668,-0.17195595668
+"Macrolide phosphotransferases","Methylacidiphilum",0.859,-0.23081327555
+"Tetracycline resistance major facilitator superfamily MFS efflux pumps","Rhodococcus",0.563,0.139856856
+"Tetracycline resistance major facilitator superfamily MFS efflux pumps","Bacteroides",0.882,0.2464232943
+"Tetracycline resistance major facilitator superfamily MFS efflux pumps","Bradyrhizobium",0.554,0.1349573482
+"Tetracycline resistance major facilitator superfamily MFS efflux pumps","Desulfobacula",0.516,0.09259785125
+"Tetracycline resistance major facilitator superfamily MFS efflux pumps","Mesoplasma",0.923,-0.3697148042
+"Aminoglycoside O-phosphotransferases","Parachlamydia",0.67,0.10542202893
+"Aminoglycoside O-phosphotransferases","Leuconostoc",0.951,-0.5117347296
+"Aminoglycoside O-phosphotransferases","Asticcacaulis",0.603,-0.2168308466
+"Aminoglycoside O-phosphotransferases","Pseudogulbenkiania",0.515,-0.1768156423
+"Aminoglycoside O-phosphotransferases","Desulfovibrio",0.555,0.1787830694
+"Aminoglycoside O-phosphotransferases","T4likevirus",0.626,-0.131094478
+"Aminoglycoside O-phosphotransferases","Phieco32likevirus",0.902,0.3050748283
+"Aminoglycoside O-nucleotidyltransferases","Halogeometricum",1,0.3508183636
+"Aminoglycoside O-nucleotidyltransferases","Oceanithermus",0.551,-0.2775946788
+"Aminoglycoside O-nucleotidyltransferases","Desulfococcus",0.787,-0.2666198642
+"Chloramphenicol acetyltransferases","Kitasatospora",0.892,0.3134865411
+"Chloramphenicol acetyltransferases","Slackia",0.829,0.2610516283
+"Chloramphenicol acetyltransferases","Blattabacterium",0.596,0.2955822484
+"Chloramphenicol acetyltransferases","Streptobacillus",0.754,-0.3154005285
+"Chloramphenicol acetyltransferases","Petrotoga",0.768,-0.6160898365
+"Aminoglycoside N-acetyltransferases","Truepera",0.759,-0.4537613401
+"Aminoglycoside N-acetyltransferases","Meiothermus",0.841,-0.3817037007
+"Aminoglycoside N-acetyltransferases","Heliobacterium",0.587,-0.3065589404
+"Aminoglycoside N-acetyltransferases","Thioalkalimicrobium",0.501,0.2534172789
+"Undecaprenyl pyrophosphate phosphatase","Haloarcula",0.604,-0.11529793839
+"Undecaprenyl pyrophosphate phosphatase","Solibacillus",0.646,0.09890195593
+"Undecaprenyl pyrophosphate phosphatase","Methylocella",0.764,0.5450080957
+"Undecaprenyl pyrophosphate phosphatase","Thauera",1,-0.6949934421
+"Undecaprenyl pyrophosphate phosphatase","Halothiobacillus",0.639,-0.3143726609
+"Penicillin binding protein","Pyrobaculum",0.893,-0.2442246406
+"Penicillin binding protein","Xylanimonas",0.647,-0.2856473041
+"Penicillin binding protein","Chlorobaculum",0.544,0.2444013044
+"Penicillin binding protein","Calditerrivibrio",0.705,0.3957745886
+"Penicillin binding protein","Delftia",0.58,0.1496434842
+"Penicillin binding protein","Punalikevirus",0.671,0.4004326451
+"Class C betalactamases","Thermogladius",0.509,-0.2130218532
+"Class C betalactamases","Spirochaeta",0.843,0.2172795535
+"Class C betalactamases","Treponema",0.839,-0.7033514178
+"Class C betalactamases","Candidatus Phytoplasma",1,-0.7821545922
+"MDR regulator","Nakamurella",0.616,-0.2771782402
+"MDR regulator","Ruminococcus",0.516,-0.09394310921
+"Polymyxin B resistance regulator","Tannerella",0.609,0.03472346961
+"Polymyxin B resistance regulator","Filifactor",0.665,-0.2886509914
+"Polymyxin B resistance regulator","Brevundimonas",0.898,0.3180295137
+"Polymyxin B resistance regulator","Beijerinckia",0.556,0.2232546352
+"Polymyxin B resistance regulator","Alteromonas",0.611,-0.1926832869
+"Lipid A modification","Haloterrigena",1,-0.5573803714
+"Lipid A modification","Fluviicola",0.545,-0.1521885387
+"Lipid A modification","Paracoccus",1,0.6094902597
+"Lipid A modification","Delftia",0.918,0.3697906175
+"Lipid A modification","Leptothrix",0.553,0.08347015194
+"Lipid A modification","Twortlikevirus",0.613,-0.2859628915
+"Lincosamide nucleotidyltransferases","Halalkalicoccus",0.617,0.3220482835
+"Lincosamide nucleotidyltransferases","Capnocytophaga",0.973,0.3684013058
+"Lincosamide nucleotidyltransferases","Thermosynechococcus",0.719,0.2500385452
+"Lincosamide nucleotidyltransferases","Coprothermobacter",0.603,0.11365305334
+"Lincosamide nucleotidyltransferases","Candidatus Methylomirabilis",1,0.6818208472
+"Lincosamide nucleotidyltransferases","Rhodospirillum",0.594,0.1653297362
+"VanG-type regulator","Nitrosopumilus",0.638,0.3039461151
+"VanG-type regulator","Stigmatella",1,0.5718185196
+"VanG-type regulator","Enterobacter",0.585,0.2798381742
+"VanG-type resistance protein","Picrophilus",0.704,0.291277607
+"VanG-type resistance protein","Granulicella",0.576,-0.1654410154
+"VanG-type resistance protein","Ethanoligenens",0.595,-0.1478187632
+"VanG-type resistance protein","Methylotenera",0.525,0.1465721874
+"Aminoglycoside efflux pumps","PhiCD119likevirus",1,-0.5657305864
+"Phenicol 23S rRNA methyltransferases","Methanotorris",0.775,0.3085814659
+"Phenicol 23S rRNA methyltransferases","Methanomassiliicoccus",0.596,-0.12871069548
+"Phenicol 23S rRNA methyltransferases","Candidatus Koribacter",0.699,0.2895474957
+"Phenicol 23S rRNA methyltransferases","Saccharopolyspora",0.636,-0.3618273469
+"Phenicol 23S rRNA methyltransferases","Odoribacter",0.584,0.1961058392
+"Phenicol 23S rRNA methyltransferases","Calditerrivibrio",0.987,-0.4321115384
+"Phenicol 23S rRNA methyltransferases","Ilyobacter",0.521,-0.4843793899
+"Phenicol 23S rRNA methyltransferases","Rhodopirellula",0.795,-0.4182166997
+"Phenicol 23S rRNA methyltransferases","Brevundimonas",1,0.18510749638
+"Macrolide resistance efflux pumps","Capnocytophaga",0.87,-0.20439146087
+"Macrolide resistance efflux pumps","Dokdonia",0.534,0.056729591
+"Macrolide resistance efflux pumps","Leptotrichia",0.503,-0.2043230308
+"Aminoglycoside efflux regulator","Hyperthermus",0.755,-0.233108404
+"Aminoglycoside efflux regulator","Natrialba",0.845,-0.328282967
+"Aminoglycoside efflux regulator","Arthrospira",0.949,-0.2340430859
+"Aminoglycoside efflux regulator","Beijerinckia",0.58,-0.12535195867
+"Aminoglycoside efflux regulator","Chrysovirus",0.608,0.1548656099
+"Quinolone resistance protein Qnr","Actinoplanes",0.549,0.1453569785
+"Quinolone resistance protein Qnr","Acidiphilium",0.714,0.393386133
+"Quinolone resistance protein Qnr","Azospira",0.878,-0.6933259995
+"Quinolone resistance protein Qnr","Pelobacter",0.74,-0.4445656787
+"Quinolone resistance protein Qnr","Nitratiruptor",0.702,-0.3250616379
+"Quinolone resistance protein Qnr","Alcanivorax",0.623,-0.3331147719
+"Quinolone resistance protein Qnr","Parapoxvirus",0.561,-0.5247483539
+"Quinolone resistance protein Qnr","Suipoxvirus",0.823,0.4945583974
+"Phenicol efflux pumps","Methanocaldococcus",0.779,0.3336173756
+"Phenicol efflux pumps","Actinosynnema",0.652,-0.16198602853
+"Phenicol efflux pumps","Anaplasma",0.501,-0.1643419344
+"Phenicol efflux pumps","PhiCD119likevirus",1,0.2057571496
+"Phenicol efflux pumps","Emaravirus",1,0.627512702
+"Phenicol efflux pumps","Alphaturrivirus",1,0.9476978578
+"Tetracycline resistance ribosomal protection proteins","Renibacterium",0.957,-0.6453386171
+"Tetracycline resistance ribosomal protection proteins","Omegapapillomavirus",0.609,-0.3121467943
+"Tetracycline inactivation enzymes","Methanosphaerula",0.557,0.289129589
+"Tetracycline inactivation enzymes","Modestobacter",0.558,0.09727078321
+"Tetracycline inactivation enzymes","Natranaerobius",0.622,-0.14790125498
+"Tetracycline inactivation enzymes","Rhodopirellula",0.795,-0.4486369206
+"Tetracycline inactivation enzymes","Desulfobacca",0.883,0.2558691101
+"Tetracycline inactivation enzymes","Halothiobacillus",0.505,0.1646116828

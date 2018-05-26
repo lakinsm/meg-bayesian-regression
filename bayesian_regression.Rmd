@@ -1,0 +1,200 @@
+---
+title: "Bayesian Regression for Linking the Resistome and Microbiome"
+author: "Steven Lakin"
+date: "May 25, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
+library(RCurl)
+library(metagenomeSeq)
+require(MASS)
+require(dirmult)
+
+snp_regex = c('ACRR',
+              'CATB',
+              'CLS',
+              'DFRC',
+              'DHFR',
+              'DHFRIII',
+              'DHFRIX',
+              'EMBA',
+              'embB',
+              'EMBB',
+              'EMBC',
+              'EMBR',
+              'ETHA',
+              'FOLP',
+              'GIDB',
+              'GYRA',
+              'gyrB',
+              'GYRB',
+              'INHA',
+              'INIA',
+              'INIC',
+              'KASA',
+              'LIAFSR',
+              'LMRA',
+              'MARR',
+              'MEXR',
+              'MEXZ',
+              'mprF',
+              'MPRF',
+              'NDH',
+              'omp36',
+              'OMP36',
+              'OMPF',
+              'OPRD',
+              'PARC',
+              'parE',
+              'PARE',
+              'PGSA',
+              'phoP',
+              'PHOP',
+              'PNCA',
+              'POR',
+              'PORB',
+              'RAMR',
+              'rpoB',
+              'RPOB',
+              'RPOC',
+              'RPSL',
+              'SOXS',
+              'tetR',
+              'TETR',
+              'TLYA',
+'TUFAB')
+
+
+## Publicly hosted scripts with helper functions
+eval(parse(text=getURL("https://raw.githubusercontent.com/duncanwadsworth/dmbvs/master/code/helper_functions.R", ssl.verifypeer=FALSE)))
+eval(parse(text=getURL("https://raw.githubusercontent.com/duncanwadsworth/dmbvs/master/code/wrapper.R", ssl.verifypeer=FALSE)))
+
+## Local paths
+executable_location = "/home/lakinsm/dmbvs/code/dmbvs.x"
+save_prefix = "resistome"
+
+## Data
+amr <- newMRexperiment(read.table(text=getURL("https://raw.githubusercontent.com/lakinsm/meg-bayesian-regression/master/AMR_analytic_matrix.csv"), header=TRUE, row.names=1, sep=","))
+amr <- MRcounts(cumNorm(amr), norm=TRUE)
+headers <- rownames(amr)
+gene <- data.table(amr)
+gene[, header := headers]
+setkey(gene, header)
+
+kraken <- newMRexperiment(read.csv(text=getURL("https://raw.githubusercontent.com/lakinsm/meg-bayesian-regression/master/kraken_analytic_matrix.csv"), header=TRUE, row.names=1, sep=","))
+kraken <- MRcounts(cumNorm(kraken), norm=TRUE)
+otu_names <- rownames(kraken)
+kraken <- data.table(kraken)
+kraken[, id :=( otu_names )]
+setkey(kraken, id)
+
+metadata <- read.csv(text=getURL("https://raw.githubusercontent.com/lakinsm/meg-bayesian-regression/master/metadata.csv"), header=TRUE)
+metadata[, "ID"] <- make.names(metadata[, "ID"])
+
+annotations <- data.table(read.csv(text=getURL("https://raw.githubusercontent.com/lakinsm/meg-bayesian-regression/master/megares_annotations_v1.01.csv"), header=TRUE))
+setkey(annotations, header)
+
+gene <- annotations[gene]
+
+gene <- gene[!(group %in% snp_regex), ]
+mech <- gene[, lapply(.SD, sum), by='mechanism', .SDcols=!c('header', 'class', 'group')]
+
+kraken_taxonomy <- data.table(id=otu_names)
+        setDT(kraken_taxonomy)[, c('Domain',
+                                   'Phylum',
+                                   'Class',
+                                   'Order',
+                                   'Family',
+                                   'Genus',
+                                   'Species') := tstrsplit(id, '|', type.convert = TRUE, fixed = TRUE)]
+setkey(kraken_taxonomy, id)
+
+kraken <- kraken_taxonomy[kraken]
+
+kraken_genus <- kraken[!is.na(Genus) & Genus != 'NA', lapply(.SD, sum), by='Genus', .SDcols=!1:8]
+kraken_genus_analytic <- newMRexperiment(counts=kraken_genus[, .SD, .SDcols=!'Genus'])
+rownames(kraken_genus_analytic) <- kraken_genus$Genus
+kraken_genus_analytic <- MRcounts(kraken_genus_analytic)
+```
+
+## Introduction
+
+Metagenomic sequencing has been used recently to characterize both the microbiome, the population of microbial organisms, and the resistome, the population of antimicrobial resistance genes contained within the microbiome.  While individual characterization of the microbiome and resistome are valuable, the ability to correlate changes in the microbiome with changes in the resistome on a taxa/gene level would provide additional information not able to be obtained by analysis of the two populations alone.  Several post-hoc methods have been proposed in the past to correlate these changes, including PERMANOVA and Procrustes analyses, however these methods don't provide a robust enough linkage between the two populations to meet the needs of modern high throughput sequencing project designs.
+
+Recently, Wadsworth *et al.* published a paper entitled "An integrative Bayesian Dirichlet-multinomial regression model for the analysis of taxonomic abundances in microbiome data" in BMC Bioinformatics that enabled direct integration of covariates outside the microbial taxa into regression analysis for differential abundance.  While the KEGG orthology pathways were used as the non-microbial covariates in the manuscript, the method should generalize to other features, such as the counts of mechanisms or genes in the resistome.  Here, we propose to provide a basic example of how the methods from this publication can be applied to link features from the resistome to the microbiome using previously published data from the Microbial Ecology Group at Colorado State University.  This data has been publicly rehosted in this repository for ease of access, however its permanent location will be as published in the manuscript described below.
+
+## Data Description
+
+
+## Data Analysis
+
+```{r analysis, echo=FALSE, warning=FALSE}
+XX <- scale(t(mech[, .SD, .SDcols=!"mechanism"]), center=TRUE, scale=TRUE)
+colnames(XX) <- mech$mechanism
+YY <- t(kraken_genus_analytic)
+cat("Dimensions of Taxa Matrix: ", dim(YY), "\n")
+cat("Dimensions of Covariate Matrix: ", dim(XX), "\n")
+
+# MCMC and hyperparameters
+# these values are reasonable for the data simulated here but should be changed
+# depending on the characteristics of other datasets
+#GG = 301L; thin = 2L; burn = 101L; # fast, for testing
+GG = 11001L; thin = 10L; burn = 1001L; # good defaults, in this case
+# reasonable default parameters, see further discussion in the manuscript
+bb_alpha = 0.02; bb_beta = 2 - bb_alpha
+proposal_alpha = 0.5; proposal_beta = 0.5
+slab_variance = 10; intercept_variance = 10
+
+# description
+cat("Beta-Binomial mean:", bb_alpha/(bb_alpha + bb_beta), "\n")
+cat("Number of kept iterations:", (GG - burn)/thin, "\n")
+
+# Run MCMC
+# results = dmbvs(XX = XX, YY = YY, intercept_variance = intercept_variance,
+#                 slab_variance = slab_variance, bb_alpha = bb_alpha,
+#                 bb_beta = bb_beta, GG = GG, thin = thin, burn = burn,
+#                 init_beta = "warmstart", init_alpha = "warmstart",
+#                 proposal_alpha = proposal_alpha, proposal_beta = proposal_beta,
+#                 exec = executable_location, selection_type = "ss",
+#                 output_location = "/mnt/phd_repositories/meg-bayesian-regression/results/")
+# params = data.frame(GG, burn, thin, intercept_variance,
+#                     slab_variance, bb_alpha, bb_beta,
+#                     proposal_alpha, proposal_beta)
+# save(results, params, XX, YY,
+#      file = paste0("results-", save_prefix, "-", Sys.Date(), ".RData"))
+```
+
+```{r results, echo=FALSE, warning=FALSE}
+## Check results
+mppi = colMeans((results$beta != 0) + 0)
+(blfdrate = bfdr(mppi, threshold = 0.1)$threshold)
+MPPI = data.frame(expand.grid(covariates = colnames(results$hyperparameters$inputdata$XX),
+                              taxa = colnames(results$hyperparameters$inputdata$YY)),
+                  mppi = mppi,
+                  beta = colMeans(results$beta))
+plot(mppi, type = "h", ylab = "MPPI",
+     xlab = "beta index", main = "Manhattan plot")
+
+# active variable traceplot
+plot.ts(rowSums((results$beta != 0) + 0), main = "Active variables traceplot",
+        ylab = "number of betas in the model", xlab = "iteration")
+
+# some of the selected beta traceplots
+selected = which(mppi > 0.5)
+fortraces = selected[sample(length(selected), 10)]
+plot.ts(results$beta[,fortraces], main = "Some selected beta traceplots",
+        xlab = "iteration", ylab = "")
+
+# visualize the associations
+png(file="./results/association_plot.png", width=1200, height=1200, units="px")
+association_plot(MPPI, graph_layout = "bipartite", main = "Sample Results")
+dev.off()
+
+mm = subset(MPPI, mppi > 0.5)
+mppi2 = mm[order(mm$covariates, mm$taxa),]
+write.csv(mppi2, file="./results/associations.csv", row.names=FALSE)
+
+```
